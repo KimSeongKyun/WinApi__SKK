@@ -24,6 +24,9 @@ public:
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
 
+public:
+	void ChangeMenuOpen();
+	bool GetMenuOpen();
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -41,6 +44,7 @@ private:
 	float4 End1 = float4::Zero;
 	bool MoveStart1 = false;
 	float4 _1Tile = { 80.0f, 80.0f };
+	bool MenuOpen = false;
 
 
 	std::string DirString = "Right_";
@@ -72,5 +76,6 @@ private:
 	void Movecalculation(float _DeltaTime);
 	bool PlayerPosCheck(float4 _MapLocation);
 	void TelePort(float4 _Entrance, float4 _Exit);
+	
 };
 

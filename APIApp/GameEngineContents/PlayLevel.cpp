@@ -5,12 +5,15 @@
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEngineCore/GameEngineRender.h>
+
 
 // 나랑 같은 등급의 헤더들
 #include "Player.h"
 #include "Monster.h"
 #include "Map.h"
 #include "ContentsEnums.h"
+#include "Menu.h"
 
 PlayLevel::PlayLevel()
 {
@@ -31,21 +34,27 @@ void PlayLevel::Loading()
 
 	// 이미지 로드
 	{
-		GameEngineImage* Image = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Player.BMP"));
-		Image->Cut(10, 3);
+		GameEngineImage* Player = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Player.BMP"));
+		Player->Cut(10, 3);
 	}
 	{
-		GameEngineImage* Image2 = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Map.BMP"));
-		GameEngineImage* Image3 = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("ColMap.BMP"));
+		GameEngineImage* Map = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Map.BMP"));
+		GameEngineImage* Menu = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Menu.BMP"));
+		//GameEngineImage* ColMap = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("ColMap.BMP"));
 	}
 	{
-		GameEngineImage* Image2 = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Number.BMP"));
-		Image2->Cut(10, 1);
+	/*	GameEngineImage* Image2 = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Number.BMP"));
+		Image2->Cut(10, 1);*/
+		//GameEngineImage* Image2 = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Number.BMP"));
+		
+	
 	}
 
 	{
 		Map* Actor = CreateActor<Map>();
+
 	}
+	
 	{	
 		float ErrorRange = 40.0f;
 		float4 StartLocation = { 2720.0f + ErrorRange, 1600.0f - ErrorRange };
@@ -92,19 +101,19 @@ void PlayLevel::Update(float _DeltaTime)
 
 	if (GameEngineInput::IsDown("MenuOpen"))
 	{
-		if (MenuOpen == false)
-		{
-			MenuOpen = true;
-		}
-
-		if (MenuOpen == true)
-		{
-			MenuOpen = false;
-		}
-			
+		Player::MainPlayer->ChangeMenuOpen();
 	}
-	float4 Pos = Player::MainPlayer->GetPos();
+
+float4 Pos = Player::MainPlayer->GetPos();
 	SetCameraPos(Pos - GameEngineWindow::GetScreenSize().half());
+
+if (Player::MainPlayer->GetMenuOpen() == true)
+	{
+		Menu* Menu1 = CreateActor<Menu>(PoketMonRenderOrder::Menu);
+		Menu1->SetPos(GetCameraPos());
+	}
+	
+	
 	
 }
 
@@ -113,7 +122,4 @@ void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 	int a = 0;
 }
 
-bool PlayLevel::GetMenuOpen()
-{
-	return MenuOpen;
-}
+

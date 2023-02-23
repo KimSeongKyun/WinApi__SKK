@@ -23,6 +23,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Monster.h">
       <SubType>
       </SubType>
@@ -54,6 +55,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Monster.cpp">
       <SubType>
       </SubType>

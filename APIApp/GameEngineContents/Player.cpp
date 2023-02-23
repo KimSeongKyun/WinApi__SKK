@@ -75,7 +75,11 @@ float tilescale = 80.0f;
 void Player::Movecalculation(float _DeltaTime)
 {
 	Start1 = GetPos();
-	
+	if (MenuOpen == true)
+	{
+		return;
+	}
+
 	if (false == MoveStart1)
 	{
 		if (true == GameEngineInput::IsPress("LeftMove"))
@@ -114,7 +118,7 @@ void Player::Movecalculation(float _DeltaTime)
 			Start1 = Pos;
 		}
 	}
-
+	
 }
 
 bool Player::PlayerPosCheck(float4 _MapLocation)
@@ -132,6 +136,26 @@ void Player::TelePort(float4 _Entrance, float4 _Exit)
 	{
 		SetPos(_Exit);
 	}
+}
+
+void Player::ChangeMenuOpen()
+{
+	if (MenuOpen == false)
+	{
+		MenuOpen = true;
+		return;
+	}
+	if (MenuOpen == true)
+	{
+		MenuOpen = false;
+		return;
+	}
+
+}
+
+bool Player::GetMenuOpen()
+{
+	return MenuOpen;
 }
 
 void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
@@ -166,9 +190,42 @@ void Player::Update(float _DeltaTime)
 	float4 PlayerHomeStairs1 = { 3160.0f, 440.0f };
 	float4 PlayerHomeStairs2 = { 3160.0f, 360.0f };
 
+	//주인공 집 입구
+	float4 PlayerHome1_1 = { 2920.0f, 960.0f };
+	float4 PlayerHome1_2 = { 3000.0f, 960.0f };
+	float4 PlayerHome2   = { 3000.0f, 920.0f };
+
+	//주인공 집 출구
+	float4 PlayerHomeExit1 = { 1480.0f, 760.0f };
+	float4 PlayerHomeExit2 = { 1480.0f, 840.0f };
+	
+	
+
+	//오박사 건물 입구
+	float4 DrOhHome1 = { 1000.0f, 600.0f };
+	float4 DrOhHome2 = { 1000.0f, 680.0f };
+
+	
+	//오박사 건물 출구
+	float4 DrOhHomeExit1_1 = { 6000.0f, 1280.0f };
+	float4 DrOhHomeExit1_2 = { 6080.0f, 1280.0f };
+	float4 DrOhHomeExit2   = { 6080.0f, 1240.0f };
+
 	//주인공 2층 -> 1층, 2층 -> 1층
 	TelePort(PlayerRoomExit1, PlayerHomeStairs1);
 	TelePort(PlayerHomeStairs2, PlayerRoomExit2);
+	
+	//주인공 집 입구 ->  출구, 출구 -> 입구
+	TelePort(PlayerHome1_1, PlayerHomeExit2);
+	TelePort(PlayerHome1_2, PlayerHomeExit2);
+	TelePort(PlayerHomeExit1, PlayerHome2);
+
+	//오박사 건물 입구 ->  출구, 출구 -> 입구
+	TelePort(DrOhHome1, DrOhHomeExit1_1);
+	TelePort(DrOhHomeExit1_1, DrOhHome2);
+	TelePort(DrOhHomeExit1_2, DrOhHome2);
+
+	
 
 	UpdateState(_DeltaTime);
 	Movecalculation(_DeltaTime);

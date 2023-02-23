@@ -29,7 +29,9 @@ void Map::Start()
 			MapRender0->SetScale({6880, 2080});
 		}
 
-		{/*
+		{
+			
+			/*
 			MapRender1 = CreateRender(PoketMonRenderOrder::Map);
 			MapRender1->SetImage("Map.Bmp");
 

@@ -19,7 +19,7 @@ public:
 	PlayLevel(PlayLevel&& _Other) noexcept = delete;
 	PlayLevel& operator=(const PlayLevel& _Other) = delete;
 	PlayLevel& operator=(PlayLevel&& _Other) noexcept = delete;
-	bool GetMenuOpen();
+	
 
 protected:
 	void Loading() override;
@@ -31,6 +31,7 @@ protected:
 
 private:
 	bool MenuOpen = false;
-
+	GameEngineRender* Menu1 = nullptr;
+	GameEngineRender* MapRender1 = nullptr;
 };
 
