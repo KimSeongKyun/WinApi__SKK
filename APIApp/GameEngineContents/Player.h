@@ -5,7 +5,8 @@
 enum class PlayerState
 {
 	IDLE,
-	MOVE,
+	MOVE
+	
 };
 
 // Ό³Έν :
@@ -26,7 +27,7 @@ public:
 
 public:
 	void ChangeMenuOpen();
-	bool GetMenuOpen();
+
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
@@ -45,6 +46,7 @@ private:
 	bool MoveStart1 = false;
 	float4 _1Tile = { 80.0f, 80.0f };
 	bool MenuOpen = false;
+	
 
 
 	std::string DirString = "Right_";

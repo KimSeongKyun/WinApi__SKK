@@ -27,6 +27,7 @@ void Map::Start()
 			MapRender0->SetImage("Map.Bmp");
 			MapRender0->SetPosition({3440, 1040});
 			MapRender0->SetScale({6880, 2080});
+			
 		}
 
 		{

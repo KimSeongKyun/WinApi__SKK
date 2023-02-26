@@ -16,3 +16,4 @@ enum class PoketMonCollisionOrder
 	PlayerAttack,
 	MonsterAttack,
 };
+

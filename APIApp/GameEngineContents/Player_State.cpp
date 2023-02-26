@@ -7,6 +7,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 
 #include "ContentsEnums.h"
+#include "Menu.h"
 
 
 // State
@@ -66,6 +67,11 @@ void Player::IdleStart()
 }
 void Player::IdleUpdate(float _Time) 
 {
+	if (MenuOpen == true)
+	{
+		return;
+	}
+
 	if (GameEngineInput::IsPress("LeftMove") || GameEngineInput::IsPress("RightMove") 
 	    || GameEngineInput::IsPress("UpMove") || GameEngineInput::IsPress("DownMove"))
 	{
@@ -103,3 +109,6 @@ void Player::MoveUpdate(float _Time)
 	DirCheck("Move");
 }
 void Player::MoveEnd() { }
+
+
+

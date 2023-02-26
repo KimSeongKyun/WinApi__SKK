@@ -54,22 +54,6 @@ void TitleLevel::Update(float _DeltaTime)
 	{
 		GameEngineCore::GetInst()->ChangeLevel("PlayLevel");
 	}
-
-
-
-	//if (true == ScrollStart)
-	//{
-	//	// 시작에서 끝까지 이동하는데 1초가 걸리는 함수
-	//	Time += _DeltaTime * 0.5f;
-	//	float4 Pos = float4::LerpClamp(Start, End, Time);
-	//	SetCameraPos(Pos);
-
-	//	if (Time >= 1.0f)
-	//	{
-	//		ScrollStart = false;
-	//		Time = 0.0f;
-	//		Start = Pos;
-	//	}
-	}
+}
 
 

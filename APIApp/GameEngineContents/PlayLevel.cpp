@@ -6,6 +6,7 @@
 #include <GameEngineCore/GameEngineResources.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
+#include <GameEngineCore/GameEngineCore.h>
 
 
 // 나랑 같은 등급의 헤더들
@@ -40,7 +41,9 @@ void PlayLevel::Loading()
 	{
 		GameEngineImage* Map = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Map.BMP"));
 		GameEngineImage* Menu = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Menu.BMP"));
-		//GameEngineImage* ColMap = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("ColMap.BMP"));
+		GameEngineImage* Botton = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Button.BMP"));
+		GameEngineImage* Bag = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Bag.BMP"));
+		
 	}
 	{
 	/*	GameEngineImage* Image2 = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Number.BMP"));
@@ -60,6 +63,7 @@ void PlayLevel::Loading()
 		float4 StartLocation = { 2720.0f + ErrorRange, 1600.0f - ErrorRange };
 		Player* Actor = CreateActor<Player>(PoketMonRenderOrder::Player);
 		Actor->SetMove(StartLocation);
+		Menu* Menu1 = CreateActor<Menu>(PoketMonRenderOrder::Menu);
 		
 	}
 	{
@@ -83,6 +87,11 @@ void PlayLevel::Loading()
 	{
 		GameEngineInput::CreateKey("MenuOpen", VK_RETURN );
 	}
+
+	if (false == GameEngineInput::IsKey("ChangeTitleLevel"))
+	{
+		GameEngineInput::CreateKey("ChangeTitleLevel", 'P');
+	}
 	// class NumbersRender : GameEngineActor
 	// {
 	// }
@@ -93,33 +102,24 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update(float _DeltaTime)
 {
+	float4 Pos = Player::MainPlayer->GetPos();
+	SetCameraPos(Pos - GameEngineWindow::GetScreenSize().half());
+
 	if (GameEngineInput::IsDown("DebugRenderSwitch"))
 	{
 		DebugRenderSwitch();
-		// Player::MainPlayer->Death()p;
 	}
 
 	if (GameEngineInput::IsDown("MenuOpen"))
 	{
+		Menu::MainMenu->RenderOn();
 		Player::MainPlayer->ChangeMenuOpen();
 	}
-
-float4 Pos = Player::MainPlayer->GetPos();
-	SetCameraPos(Pos - GameEngineWindow::GetScreenSize().half());
-
-if (Player::MainPlayer->GetMenuOpen() == true)
-	{
-		Menu* Menu1 = CreateActor<Menu>(PoketMonRenderOrder::Menu);
-		Menu1->SetPos(GetCameraPos());
-	}
-	
-	
-	
 }
 
 void PlayLevel::LevelChangeStart(GameEngineLevel* _PrevLevel)
 {
-	int a = 0;
+	
 }
 
 

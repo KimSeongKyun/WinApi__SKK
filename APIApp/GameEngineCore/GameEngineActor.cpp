@@ -49,7 +49,6 @@ GameEngineRender* GameEngineActor::CreateRender(const std::string_view& _Image, 
 GameEngineRender* GameEngineActor::CreateRender(int _Order /*= 0*/)
 {
 	GameEngineRender* Render = new GameEngineRender();
-	// 분명뭔가 좀 보기 좋지 않다.
 	Render->SetOwner(this);
 	Render->SetOrder(_Order);
 	RenderList.push_back(Render);
