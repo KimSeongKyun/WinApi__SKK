@@ -45,4 +45,5 @@ private:
 	float4	width = { 75.0f, 0.0f };
 	int MenuNumber = 0;
 	int MaxNumber = 0;
+	int MinNumber = 0;
 };

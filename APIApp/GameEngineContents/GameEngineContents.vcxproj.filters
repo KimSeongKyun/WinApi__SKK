@@ -24,6 +24,9 @@
     <ClInclude Include="Menu.h">
       <Filter>Play</Filter>
     </ClInclude>
+    <ClInclude Include="Bag.h">
+      <Filter>Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PoketMonGoldCore.cpp" />
@@ -49,6 +52,9 @@
       <Filter>Play</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="Bag.cpp">
       <Filter>Play</Filter>
     </ClCompile>
   </ItemGroup>

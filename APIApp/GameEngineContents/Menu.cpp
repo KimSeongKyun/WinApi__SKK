@@ -6,6 +6,7 @@
 
 
 #include "Player.h"
+#include "Bag.h"
 
 Menu* Menu::MainMenu;
 
@@ -31,10 +32,6 @@ void Menu::Start()
 	Button1->SetImage("Button.bmp");
 	Button1->SetScaleToImage();
 	Button1->Off();
-	Bag1 = CreateRender(PoketMonRenderOrder::Menu);
-	Bag1->SetImage("Bag.bmp");
-	Bag1->SetScaleToImage();
-	Bag1->Off();
 
 	// Å° »ý¼º
 	GameEngineInput::CreateKey("Up", 'W');
@@ -44,6 +41,7 @@ void Menu::Start()
 	GameEngineInput::CreateKey("Ok", 'J');
 	GameEngineInput::CreateKey("Cancel", 'K');
 
+	
 }
 
 
@@ -53,7 +51,7 @@ void Menu::Update(float _DeltaTime)
 	{
 		if (true == GameEngineInput::IsDown("Up"))
 		{
-			if (MenuNumber <= 0)
+			if (MenuNumber <= MinNumber)
 			{
 				return;
 			}
@@ -125,10 +123,9 @@ void Menu::MenuSelect(PoketMonMenu _Menu)
 	switch (_Menu)
 	{
 	case PoketMonMenu::Bag:
+		Bag::MainBag->RenderOn();
 		Menu1->Off();
 		Button1->Off();
-		Bag1->SetPosition(Player::MainPlayer->GetPos());
-		Bag1->On();
 		break;
 	case PoketMonMenu::Player:
 		break;
@@ -137,6 +134,7 @@ void Menu::MenuSelect(PoketMonMenu _Menu)
 	case PoketMonMenu::Option:
 		break;
 	case PoketMonMenu::Close:
+		RenderOn();
 		break;
 	default:
 		break;

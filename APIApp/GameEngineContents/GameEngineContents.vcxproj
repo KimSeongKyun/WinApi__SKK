@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bag.h" />
     <ClInclude Include="Map.h">
       <SubType>
       </SubType>
@@ -51,6 +52,7 @@
     <ClInclude Include="ContentsEnums.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Map.cpp">
       <SubType>
       </SubType>

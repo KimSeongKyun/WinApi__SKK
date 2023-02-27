@@ -6,7 +6,8 @@ enum class PoketMonRenderOrder
 	Map,
 	Player,
 	Monster,
-	Menu
+	Menu,
+	Bag
 };
 
 enum class PoketMonCollisionOrder

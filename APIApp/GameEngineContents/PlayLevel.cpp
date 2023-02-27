@@ -15,6 +15,7 @@
 #include "Map.h"
 #include "ContentsEnums.h"
 #include "Menu.h"
+#include "Bag.h"
 
 PlayLevel::PlayLevel()
 {
@@ -64,6 +65,8 @@ void PlayLevel::Loading()
 		Player* Actor = CreateActor<Player>(PoketMonRenderOrder::Player);
 		Actor->SetMove(StartLocation);
 		Menu* Menu1 = CreateActor<Menu>(PoketMonRenderOrder::Menu);
+		Bag* Bag1 = CreateActor<Bag>(PoketMonRenderOrder::Bag);
+
 		
 	}
 	{
