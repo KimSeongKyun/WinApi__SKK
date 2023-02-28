@@ -16,6 +16,7 @@ PoketMonGoldCore::PoketMonGoldCore()
 
 PoketMonGoldCore::~PoketMonGoldCore() 
 {
+
 }
 
 void PoketMonGoldCore::Start()
