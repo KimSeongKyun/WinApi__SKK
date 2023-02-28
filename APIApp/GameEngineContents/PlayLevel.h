@@ -22,6 +22,7 @@ public:
 	
 
 protected:
+	void SoundLoading();
 	void Loading() override;
 	void Update(float _DeltaTime) override;
 

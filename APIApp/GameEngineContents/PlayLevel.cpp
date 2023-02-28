@@ -7,6 +7,7 @@
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEngineCore/GameEngineRender.h>
 #include <GameEngineCore/GameEngineCore.h>
+#include <GameEngineBase/GameEngineFile.h>
 
 
 // 나랑 같은 등급의 헤더들
@@ -23,6 +24,20 @@ PlayLevel::PlayLevel()
 
 PlayLevel::~PlayLevel()
 {
+}
+
+void PlayLevel::SoundLoading()
+{
+	GameEngineDirectory Dir;
+	Dir.MoveParentToDirectory("ContentsResources");
+	Dir.Move("ContentsResources");
+	Dir.Move("Sound");
+	std::vector<GameEngineFile> Files = Dir.GetAllFile();
+
+	for (size_t i = 0; i < Files.size(); i++)
+	{
+		GameEngineResources::GetInst().SoundLoad(Files[i].GetFullPath());
+	}
 }
 
 void PlayLevel::Loading()
