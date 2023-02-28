@@ -81,6 +81,12 @@ float tilescale = 80.0f;
 
 void Player::Movecalculation(float _DeltaTime)
 {
+	GameEngineImage* ColImage = GameEngineResources::GetInst().ImageFind("ColMap.BMP");
+	if (nullptr == ColImage)
+	{
+		MsgAssert("충돌용 맵 이미지가 없습니다.");
+	}
+
 	if (MenuOpen == true)
 	{
 		return;
@@ -94,6 +100,12 @@ void Player::Movecalculation(float _DeltaTime)
 		{
 			End1 = Start1 + float4(-tilescale, 0.0f);
 			MoveStart1 = true;
+			
+			if (RGB(73, 69, 69) == ColImage->GetPixelColor(End1, RGB(73, 69, 69)))
+			{
+				MoveStart1 = false;
+				return;
+			}
 		}
 		else if (true == GameEngineInput::IsPress("RightMove"))
 		{
@@ -104,11 +116,13 @@ void Player::Movecalculation(float _DeltaTime)
 		{
 			End1 = Start1 + float4(0.0f, -tilescale);
 			MoveStart1 = true;
+
 		}
 		else if (true == GameEngineInput::IsPress("DownMove"))
 		{
 			End1 = Start1 + float4(0.0f, tilescale);
 			MoveStart1 = true;
+
 		}
 	}
 

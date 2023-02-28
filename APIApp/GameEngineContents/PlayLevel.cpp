@@ -41,9 +41,11 @@ void PlayLevel::Loading()
 	}
 	{
 		GameEngineImage* Map = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Map.BMP"));
+		GameEngineImage* ColMap = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("ColMap.BMP"));
 		GameEngineImage* Menu = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Menu.BMP"));
 		GameEngineImage* Botton = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Button.BMP"));
 		GameEngineImage* Bag = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Bag.BMP"));
+		
 		
 	}
 	{
