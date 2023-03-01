@@ -5,7 +5,7 @@ enum class PoketMonRenderOrder
 	BackGround,
 	Map,
 	Player,
-	Monster,
+	NPC,
 	Menu,
 	Bag
 };
@@ -13,8 +13,9 @@ enum class PoketMonRenderOrder
 enum class PoketMonCollisionOrder
 {
 	Player,
-	Monster,
+	NPC,
 	PlayerAttack,
 	MonsterAttack,
 };
+
 

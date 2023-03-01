@@ -6,9 +6,6 @@
     <ClInclude Include="TitleLevel.h">
       <Filter>Title</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Play</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Play</Filter>
     </ClInclude>
@@ -27,14 +24,14 @@
     <ClInclude Include="Bag.h">
       <Filter>Play</Filter>
     </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PoketMonGoldCore.cpp" />
     <ClCompile Include="TitleLevel.cpp">
       <Filter>Title</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Play</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Play</Filter>
@@ -55,6 +52,9 @@
       <Filter>Play</Filter>
     </ClCompile>
     <ClCompile Include="Bag.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="NPC.cpp">
       <Filter>Play</Filter>
     </ClCompile>
   </ItemGroup>

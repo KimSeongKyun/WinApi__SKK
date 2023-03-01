@@ -19,6 +19,7 @@ public:
 
 public:
 	// constrcuter destructer
+
 	Menu();
 	~Menu();
 

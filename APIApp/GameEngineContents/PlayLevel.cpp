@@ -12,7 +12,7 @@
 
 // 나랑 같은 등급의 헤더들
 #include "Player.h"
-#include "Monster.h"
+#include "NPC.h"
 #include "Map.h"
 #include "ContentsEnums.h"
 #include "Menu.h"
@@ -60,6 +60,9 @@ void PlayLevel::Loading()
 		GameEngineImage* Menu = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Menu.BMP"));
 		GameEngineImage* Botton = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Button.BMP"));
 		GameEngineImage* Bag = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Bag.BMP"));
+		GameEngineImage* NPC = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("NPC.BMP"));
+		NPC->Cut(10, 11);
+
 		
 		
 	}
@@ -76,13 +79,20 @@ void PlayLevel::Loading()
 
 	}
 	
-	{	
+	{
 		float ErrorRange = 40.0f;
 		float4 StartLocation = { 2720.0f + ErrorRange, 1600.0f - ErrorRange };
 		Player* Actor = CreateActor<Player>(PoketMonRenderOrder::Player);
 		Actor->SetMove(StartLocation);
 		Menu* Menu1 = CreateActor<Menu>(PoketMonRenderOrder::Menu);
 		Bag* Bag1 = CreateActor<Bag>(PoketMonRenderOrder::Bag);
+		NPC* NPC1 = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		float4 TileRange = { 0.0f, 80.0f };
+		NPC1->SetMove(Player::MainPlayer->GetPos()- TileRange);
+		NPC1->RenderOn(NPCState::MOM);
+		NPC* NPC2 = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		NPC2->SetMove(Player::MainPlayer->GetPos() -TileRange - TileRange);
+		NPC2->RenderOn(NPCState::DROH);
 
 		
 	}
