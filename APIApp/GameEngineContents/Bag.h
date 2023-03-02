@@ -21,6 +21,7 @@ public:
 
 public:
 	void RenderOn();
+	void ItemInsert(int _Num);
 
 protected:
 	void Start() override;
@@ -28,6 +29,8 @@ protected:
 
 private:
 	GameEngineRender* Bag1 = nullptr;
+	std::vector< GameEngineRender*> ItemRenderers;
+	GameEngineRender* NewitemRender[3];
 	int CurPoketballNumber = 0;
 	int MaxPoketballNumber = 0;
 	int CurItemNumber = 0;

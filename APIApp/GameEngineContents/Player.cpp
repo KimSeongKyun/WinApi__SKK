@@ -16,6 +16,8 @@
 
 #include "Menu.h"
 
+#include "NPC.h"
+
 Player* Player::MainPlayer;
 
 Player::Player() 
@@ -31,6 +33,8 @@ void Player::ChangeMenuOpen()
 	MenuOpen = !MenuOpen;
 }
 
+
+
 void Player::Start()
 {
 	MainPlayer = this;
@@ -43,6 +47,8 @@ void Player::Start()
 	GameEngineInput::CreateKey("RightMove", 'D');
 	GameEngineInput::CreateKey("DownMove", 'S');
 	GameEngineInput::CreateKey("UpMove", 'W');
+	GameEngineInput::CreateKey("Select", 'J');
+
 
 
 	{
@@ -188,20 +194,29 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
  
 void Player::Update(float _DeltaTime) 
 {
+	if (true == GameEngineInput::IsDown("Select"))
+	{
+		if (nullptr != BodyCollision)
+		{
+			std::vector<GameEngineCollision*> Collision;
+			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCDown), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
+			{
+				Menu::MainMenu->RenderOn();
+			}
+			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCUp), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
+			{
 
-	//if (nullptr != BodyCollision)
-	//{
-	//	std::vector<GameEngineCollision*> Collision;
-	//	if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::Monster), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
-	//	{
-	//		for (size_t i = 0; i < Collision.size(); i++)
-	//		{
-	//			GameEngineActor* ColActor = Collision[i]->GetActor();
-	//			ColActor->Death();
-	//		}
-	//	}
-	//}
-	
+			}
+			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCLeft), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
+			{
+
+			}
+			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCRight), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
+			{
+
+			}
+		}
+	}
 	// 주인공 방의 출구
 	float4 PlayerRoomExit1 = { 3000.0f, 1320.0f };
 	float4 PlayerRoomExit2 = { 3000.0f, 1400.0f };
@@ -310,3 +325,4 @@ void Player::Render(float _DeltaTime)
 
 	// 디버깅용.
 }
+

@@ -62,7 +62,7 @@ void PlayLevel::Loading()
 		GameEngineImage* Bag = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Bag.BMP"));
 		GameEngineImage* NPC = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("NPC.BMP"));
 		NPC->Cut(10, 11);
-
+		GameEngineImage* Item = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Medicine.BMP"));
 		
 		
 	}
@@ -132,6 +132,7 @@ void PlayLevel::Loading()
 
 void PlayLevel::Update(float _DeltaTime)
 {
+	
 	float4 Pos = Player::MainPlayer->GetPos();
 	SetCameraPos(Pos - GameEngineWindow::GetScreenSize().half());
 

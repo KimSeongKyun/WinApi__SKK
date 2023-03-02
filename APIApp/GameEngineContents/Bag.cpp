@@ -30,14 +30,30 @@ void Bag::Start()
 	Bag1->SetScaleToImage();
 	Bag1->Off();
 	MaxBagType = 1;
+	for (int i = 0; i < 3; i++)
+	{
+		NewitemRender[i] = CreateRender(PoketMonRenderOrder::Item);
+		NewitemRender[i]->SetImage("Medicine.bmp");
+		NewitemRender[i]->SetScaleToImage();
+	}
+
+	ItemRenderers.push_back(NewitemRender[0]);
+	
 }
 
 void Bag::Update(float _DeltaTime)
 {
 	
+
 	if (Bag1->IsUpdate() == true)
 	{
+		for (int i = 0; ItemRenderers.size(); ++i)
+		{
+			NewitemRender[i]->SetPosition(Player::MainPlayer->GetPos());
+		}
 		
+		
+
 		if (true == GameEngineInput::IsDown("Left"))
 		{
 			if (BagType <= 0)
@@ -119,3 +135,9 @@ void Bag::RenderOn()
 		return;
 	}
 }
+void Bag::ItemInsert(int _Num)
+{
+	ItemRenderers.push_back(NewitemRender[_Num]);
+}
+
+

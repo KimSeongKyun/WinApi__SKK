@@ -35,6 +35,10 @@ protected:
 private:
 	float4 _1Tile = { 80.0f, 80.0f };
 	GameEngineRender* AnimationRender[2] = {};
+	GameEngineCollision* BodyCollisionLeft  = nullptr;
+	GameEngineCollision* BodyCollisionRight = nullptr;
+	GameEngineCollision* BodyCollisionUp    = nullptr;
+	GameEngineCollision* BodyCollisionDown  = nullptr;
 	GameEngineCollision* BodyCollision = nullptr;
 	std::string DirString = "DROH";
 };

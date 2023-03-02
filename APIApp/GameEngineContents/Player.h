@@ -27,6 +27,7 @@ public:
 
 public:
 	void ChangeMenuOpen();
+	GameEngineCollision* GetCollision();
 
 protected:
 	void Start() override;

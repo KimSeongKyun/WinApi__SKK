@@ -35,6 +35,28 @@ void NPC::Start()
 	AnimationRender[1]->CreateAnimation({ .AnimationName = "Mom",  .ImageName = "NPC.bmp", .Start = 11, .End = 11 });
 	AnimationRender[0]->ChangeAnimation("DROH");
 	
+	float4 Left = { -80.0f, 0.0f };
+	float4 Right = { 80.0f, 0.0f };
+	float4 Up = { 0.0f, -80.0f };
+	float4 Down = { 0.0f, 80.0f };
+
+	BodyCollisionLeft = CreateCollision(PoketMonCollisionOrder::NPCLeft);
+	BodyCollisionLeft->SetScale({80.0f, 80.0f });
+	BodyCollisionLeft->SetPosition(GetPos() - Left);
+	BodyCollisionRight = CreateCollision(PoketMonCollisionOrder::NPCRight);
+	BodyCollisionRight->SetScale({ 80.0f, 80.0f });
+	BodyCollisionRight->SetPosition(GetPos() - Right);
+	BodyCollisionUp = CreateCollision(PoketMonCollisionOrder::NPCUp);
+	BodyCollisionUp->SetScale({ 80.0f, 80.0f });
+	BodyCollisionUp->SetPosition(GetPos() - Up);
+	BodyCollisionDown = CreateCollision(PoketMonCollisionOrder::NPCDown);
+	BodyCollisionDown->SetScale({ 80.0f, 80.0f });
+	BodyCollisionDown->SetPosition(GetPos() - Down);
+	BodyCollision = CreateCollision(PoketMonCollisionOrder::NPC);
+	BodyCollision->SetScale({ 80.0f, 80.0f });
+	
+
+	
 }
 
 void NPC::Update(float _DeltaTime)

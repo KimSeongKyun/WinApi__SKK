@@ -7,15 +7,18 @@ enum class PoketMonRenderOrder
 	Player,
 	NPC,
 	Menu,
-	Bag
+	Bag,
+	Item
 };
 
 enum class PoketMonCollisionOrder
 {
 	Player,
 	NPC,
-	PlayerAttack,
-	MonsterAttack,
+	NPCLeft,
+	NPCRight,
+	NPCUp,
+	NPCDown
 };
 
 
