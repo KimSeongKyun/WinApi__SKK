@@ -30,14 +30,23 @@ void Bag::Start()
 	Bag1->SetScaleToImage();
 	Bag1->Off();
 	MaxBagType = 1;
-	for (int i = 0; i < 3; i++)
-	{
-		NewitemRender[i] = CreateRender(PoketMonRenderOrder::Item);
-		NewitemRender[i]->SetImage("Medicine.bmp");
-		NewitemRender[i]->SetScaleToImage();
-	}
 
-	ItemRenderers.push_back(NewitemRender[0]);
+	ItemInsert("Medicine.bmp");
+	ItemInsert("Medicine.bmp");
+	ItemInsert("Medicine.bmp");
+	ItemInsert("Medicine.bmp");
+	ItemInsert("Medicine.bmp");
+	ItemInsert("Medicine.bmp");
+
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	ItemRenderers.push_back();
+	//	NewitemRender[i] = CreateRender(PoketMonRenderOrder::Item);
+	//	NewitemRender[i]->SetImage("Medicine.bmp");
+	//	NewitemRender[i]->SetScaleToImage();
+	//}
+
+	// ItemRenderers.push_back(NewitemRender[0]);
 	
 }
 
@@ -47,12 +56,15 @@ void Bag::Update(float _DeltaTime)
 
 	if (Bag1->IsUpdate() == true)
 	{
-		for (int i = 0; ItemRenderers.size(); ++i)
+		for (size_t i = 0; i < ItemRenderers.size(); i++)
 		{
-			NewitemRender[i]->SetPosition(Player::MainPlayer->GetPos());
+			ItemRenderers[i]->SetPosition({100, 100.0f * i});
 		}
-		
-		
+
+		//for (int i = 0; ItemRenderers.size(); ++i)
+		//{
+		//	NewitemRender[i]->SetPosition(Player::MainPlayer->GetPos());
+		//}
 
 		if (true == GameEngineInput::IsDown("Left"))
 		{
@@ -135,9 +147,14 @@ void Bag::RenderOn()
 		return;
 	}
 }
-void Bag::ItemInsert(int _Num)
+void Bag::ItemInsert(const std::string_view& _ItemName)
 {
-	ItemRenderers.push_back(NewitemRender[_Num]);
+	GameEngineRender* ItemRender  = CreateRender(PoketMonRenderOrder::Item);
+	ItemRender->SetImage(_ItemName);
+	ItemRender->SetScaleToImage();
+	ItemRender->EffectCameraOff();
+
+	ItemRenderers.push_back(ItemRender);
 }
 
 
