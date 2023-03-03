@@ -42,16 +42,16 @@ void NPC::Start()
 
 	BodyCollisionLeft = CreateCollision(PoketMonCollisionOrder::NPCLeft);
 	BodyCollisionLeft->SetScale({80.0f, 80.0f });
-	BodyCollisionLeft->SetPosition(GetPos() - Left);
+	BodyCollisionLeft->SetPosition(GetPos() + Left);
 	BodyCollisionRight = CreateCollision(PoketMonCollisionOrder::NPCRight);
 	BodyCollisionRight->SetScale({ 80.0f, 80.0f });
-	BodyCollisionRight->SetPosition(GetPos() - Right);
+	BodyCollisionRight->SetPosition(GetPos() + Right);
 	BodyCollisionUp = CreateCollision(PoketMonCollisionOrder::NPCUp);
 	BodyCollisionUp->SetScale({ 80.0f, 80.0f });
-	BodyCollisionUp->SetPosition(GetPos() - Up);
+	BodyCollisionUp->SetPosition(GetPos() + Up);
 	BodyCollisionDown = CreateCollision(PoketMonCollisionOrder::NPCDown);
 	BodyCollisionDown->SetScale({ 80.0f, 80.0f });
-	BodyCollisionDown->SetPosition(GetPos() - Down);
+	BodyCollisionDown->SetPosition(GetPos() + Down);
 	BodyCollision = CreateCollision(PoketMonCollisionOrder::NPC);
 	BodyCollision->SetScale({ 80.0f, 80.0f });
 	

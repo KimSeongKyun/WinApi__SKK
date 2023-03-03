@@ -34,7 +34,7 @@ void TitleLevel::Loading()
 
 	if (false == GameEngineInput::IsKey("LevelChange"))
 	{
-		GameEngineInput::CreateKey("LevelChange", 'P');
+		GameEngineInput::CreateKey("LevelChange", 'J');
 	}
 
 	CreateActor<TitleBack>();
