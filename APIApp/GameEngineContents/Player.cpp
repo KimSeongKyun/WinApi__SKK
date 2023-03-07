@@ -33,6 +33,11 @@ void Player::ChangeMenuOpen()
 	MenuOpen = !MenuOpen;
 }
 
+pokemon* Player::GetPokemon(int _PokemonNum)
+{
+	return Pokemon[_PokemonNum];
+}
+
 
 
 void Player::Start()
@@ -75,10 +80,11 @@ void Player::Start()
 	// NewRender.SetActor(this);
 	// NewRender.SetValue(10000);
 
-	{
+
 		BodyCollision = CreateCollision(PoketMonCollisionOrder::Player);
 		BodyCollision->SetScale({ 80, 80 });
-	}
+		
+
 
 	ChangeState(PlayerState::IDLE);
 }
@@ -112,6 +118,8 @@ void Player::Movecalculation(float _DeltaTime)
 				MoveStart1 = false;
 				return;
 			}
+
+
 		}
 		else if (true == GameEngineInput::IsPress("RightMove"))
 		{
@@ -123,6 +131,7 @@ void Player::Movecalculation(float _DeltaTime)
 				MoveStart1 = false;
 				return;
 			}
+
 		}
 		else if (true == GameEngineInput::IsPress("UpMove"))
 		{
@@ -135,6 +144,7 @@ void Player::Movecalculation(float _DeltaTime)
 				return;
 			}
 
+
 		}
 		else if (true == GameEngineInput::IsPress("DownMove"))
 		{
@@ -146,6 +156,7 @@ void Player::Movecalculation(float _DeltaTime)
 				MoveStart1 = false;
 				return;
 			}
+
 
 		}
 	}
@@ -198,10 +209,10 @@ void Player::Update(float _DeltaTime)
 	{
 		if (nullptr != BodyCollision)
 		{
-			std::vector<GameEngineCollision*> Collision;
+			
 			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCDown), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
 			{
-				Menu::MainMenu->RenderOn();
+				
 			}
 			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCUp), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
 			{
@@ -217,6 +228,9 @@ void Player::Update(float _DeltaTime)
 			}
 		}
 	}
+
+	UpdateState(_DeltaTime);
+	Movecalculation(_DeltaTime);
 	// 주인공 방의 출구
 	float4 PlayerRoomExit1 = { 3000.0f, 1320.0f };
 	float4 PlayerRoomExit2 = { 3000.0f, 1400.0f };
@@ -261,8 +275,7 @@ void Player::Update(float _DeltaTime)
 	TelePort(DrOhHome1, DrOhHomeExit2);
 
 
-	UpdateState(_DeltaTime);
-	Movecalculation(_DeltaTime);
+	
 	
 }
 

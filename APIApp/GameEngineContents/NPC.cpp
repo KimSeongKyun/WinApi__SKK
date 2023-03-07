@@ -64,6 +64,11 @@ void NPC::Update(float _DeltaTime)
 	
 }
 
+pokemon* NPC::GetPokemon(int _PokemonNum)
+{
+	return Pokemon[_PokemonNum];
+}
+
 void NPC::RenderOn(NPCState _Num)
 {
 	

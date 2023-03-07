@@ -27,6 +27,9 @@
     <ClInclude Include="NPC.h">
       <Filter>Play</Filter>
     </ClInclude>
+    <ClInclude Include="pokemon.h">
+      <Filter>Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PoketMonGoldCore.cpp" />
@@ -55,6 +58,9 @@
       <Filter>Play</Filter>
     </ClCompile>
     <ClCompile Include="NPC.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="pokemon.cpp">
       <Filter>Play</Filter>
     </ClCompile>
   </ItemGroup>

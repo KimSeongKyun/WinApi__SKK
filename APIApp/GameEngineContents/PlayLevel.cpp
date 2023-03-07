@@ -86,13 +86,27 @@ void PlayLevel::Loading()
 		Actor->SetMove(StartLocation);
 		Menu* Menu1 = CreateActor<Menu>(PoketMonRenderOrder::Menu);
 		Bag* Bag1 = CreateActor<Bag>(PoketMonRenderOrder::Bag);
-		NPC* NPC1 = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		NPC* Mom = CreateActor<NPC>(PoketMonRenderOrder::NPC);
 		float4 TileRange = { 0.0f, 80.0f };
-		NPC1->SetMove(Player::MainPlayer->GetPos()- TileRange);
-		NPC1->RenderOn(NPCState::MOM);
-		NPC* NPC2 = CreateActor<NPC>(PoketMonRenderOrder::NPC);
-		NPC2->SetMove(Player::MainPlayer->GetPos() -TileRange - TileRange);
-		NPC2->RenderOn(NPCState::DROH);
+		Mom->SetMove({ 3000.0f, 600.0f });
+		Mom->RenderOn(NPCState::MOM);
+		NPC* DROH = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		DROH->SetMove({6120.0f, 520.0f});
+		DROH->RenderOn(NPCState::DROH);
+		/*NPC* Mom = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		float4 TileRange = { 0.0f, 80.0f };
+		Mom->SetMove(Player::MainPlayer->GetPos() - TileRange);
+		Mom->RenderOn(NPCState::MOM);
+		NPC* DROH = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		DROH->SetMove(Player::MainPlayer->GetPos() - TileRange - TileRange);
+		DROH->RenderOn(NPCState::DROH);
+		NPC* Mom = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		float4 TileRange = { 0.0f, 80.0f };
+		Mom->SetMove(Player::MainPlayer->GetPos() - TileRange);
+		Mom->RenderOn(NPCState::MOM);
+		NPC* DROH = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		DROH->SetMove(Player::MainPlayer->GetPos() - TileRange - TileRange);
+		DROH->RenderOn(NPCState::DROH);*/
 
 		
 	}

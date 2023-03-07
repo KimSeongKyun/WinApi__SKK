@@ -1,5 +1,6 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
+#include "pokemon.h"
 
 enum class NPCState
 {
@@ -9,7 +10,7 @@ enum class NPCState
 class NPC : public GameEngineActor
 {
 public:
-	static NPC* MainPlayer;
+	
 
 	// constrcuter destructer
 	NPC();
@@ -30,7 +31,8 @@ protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 
-
+public:
+	pokemon* GetPokemon(int _PokemonNum);
 
 private:
 	float4 _1Tile = { 80.0f, 80.0f };
@@ -40,6 +42,8 @@ private:
 	GameEngineCollision* BodyCollisionUp    = nullptr;
 	GameEngineCollision* BodyCollisionDown  = nullptr;
 	GameEngineCollision* BodyCollision = nullptr;
+	pokemon* Pokemon[6] = {};
 	std::string DirString = "DROH";
+
 };
 

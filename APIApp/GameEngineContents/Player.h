@@ -2,6 +2,8 @@
 #include <GameEngineCore/GameEngineActor.h>
 #include <GameEngineCore/NumberRenderObject.h>
 
+class pokemon;
+
 enum class PlayerState
 {
 	IDLE,
@@ -25,15 +27,17 @@ public:
 	Player& operator=(const Player& _Other) = delete;
 	Player& operator=(Player&& _Other) noexcept = delete;
 
-public:
-	void ChangeMenuOpen();
-	GameEngineCollision* GetCollision();
+
+	
 
 protected:
 	void Start() override;
 	void Update(float _DeltaTime) override;
 	void Render(float _Time) override;
 
+public:
+	void ChangeMenuOpen();
+	pokemon* GetPokemon(int _PokemonNum);
 
 private:
 	NumberRenderObject TestNumber;
@@ -57,6 +61,8 @@ private:
 
 	GameEngineRender* AnimationRender = nullptr;
 	GameEngineCollision* BodyCollision = nullptr;
+	pokemon* Pokemon[6] = {};
+	std::vector<GameEngineCollision*> Collision;
 
 	void LevelChangeStart(GameEngineLevel* _PrevLevel) override;
 	void DirCheck(const std::string_view& _AnimationName);

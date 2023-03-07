@@ -8,7 +8,8 @@ enum class PoketMonRenderOrder
 	NPC,
 	Menu,
 	Bag,
-	Item
+	Item,
+	Pokemon
 };
 
 enum class PoketMonCollisionOrder

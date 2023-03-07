@@ -25,8 +25,11 @@ void Map::Start()
 		{
 			MapRender0 = CreateRender(PoketMonRenderOrder::Map);
 			MapRender0->SetImage("Map.Bmp");
-			MapRender0->SetPosition({3440, 1040});
-			MapRender0->SetScale({6880, 2080});
+			MapRender0->SetScaleToImage();
+			float4 MapSize = MapRender0->GetScale();
+			MapRender0->SetPosition(MapSize.half());
+			
+			
 			
 		}
 
