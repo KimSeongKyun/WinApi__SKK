@@ -212,7 +212,7 @@ void Player::Update(float _DeltaTime)
 			
 			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCDown), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
 			{
-				
+				Menu::MainMenu->RenderOn();
 			}
 			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCUp), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
 			{
@@ -260,6 +260,56 @@ void Player::Update(float _DeltaTime)
 	float4 DrOhHomeExit1_2 = { 6120.0f, 1320.0f };
 	float4 DrOhHomeExit2   = { 6120.0f, 1240.0f };
 
+	//마을 출구 (나갈 때)
+	float4 TownExit1_1 = { 360.0f, 1000.0f };
+	float4 TownExit1_2 = { 360.0f, 1080.0f };
+	
+	//들어올 때
+	float4 TownExit2_1 = { 440.0f, 1000.0f };
+	float4 TownExit2_2 = { 440.0f, 1080.0f };
+	
+
+	//도시 입구 (나갈 때)
+	float4 CityExit1_1 = { 5240.0f, 920.0f };
+	float4 CityExit1_2 = { 5240.0f, 1000.0f };
+	//들어올 때
+	float4 CityExit2_1 = { 5160.0f, 920.0f };
+	float4 CityExit2_2 = { 5160.0f, 1000.0f };
+	
+	//상점 입구 들어갈 때
+	float4 Store1 = { 4040.0f, 760.0f };
+	//상점 입구 나올 때
+	float4 Store2 = { 4040.0f, 840.0f };
+	//상점 출구 나갈 때
+	float4 StoreExit1_1 = { 1800.0f, 2760.0f };
+	float4 StoreExit1_2 = { 1880.0f, 2760.0f };
+	//상점 출구 들어올 때
+	float4 StoreExit2 = { 1880.0f, 2680.0f };
+	
+
+	//포켓몬센터 입구 들어갈 때
+	float4 PC1 = { 4680.0f, 760.0f };
+	//포켓몬센터 입구 나올 때
+	float4 PC2 = { 4680.0f, 840.0f };
+
+	//포켓몬센터 출구 들어올때
+	float4 PCExit1_1 = { 760.0f, 2680.0f };
+	//포켓몬센터 출구 나갈 때
+	float4 PCExit2_1 = { 680.0f, 2760.0f };
+	float4 PCExit2_2 = { 760.0f, 2760.0f };
+
+	//체육관 입구 들어갈 때
+	float4 Gym1 = { 4600.0f, 1240.0f };
+	//체육관 입구 나올 때
+	float4 Gym2 = { 4600.0f, 1320.0f };
+
+	//체육관 출구 들어올 때
+	float4 GymExit1 = { 6120.0f, 2600.0f };
+	//체육관 출구 나올 때
+	float4 GymExit2_1 = { 6040.0f, 2680.0f };
+	float4 GymExit2_2 = { 6120.0f, 2680.0f };
+
+
 	//주인공 2층 -> 1층, 2층 -> 1층
 	TelePort(PlayerRoomExit1, PlayerHomeStairs1);
 	TelePort(PlayerHomeStairs2, PlayerRoomExit2);
@@ -274,9 +324,29 @@ void Player::Update(float _DeltaTime)
 	TelePort(DrOhHomeExit1_2, DrOhHome2);
 	TelePort(DrOhHome1, DrOhHomeExit2);
 
+	//마을-> 도시
+	TelePort(TownExit1_1, CityExit2_1);
+	TelePort(TownExit1_2, CityExit2_2);
+	
+	//도시->마을
+	TelePort(CityExit1_1, TownExit2_1);
+	TelePort(CityExit1_2, TownExit2_2);
+	//상점들어갈때
+	TelePort(Store1, StoreExit2);
+	//상점 나올 때
+	TelePort(StoreExit1_1, Store2);
+	TelePort(StoreExit1_2, Store2);
+	//포켓몬센터 들어갈 때
+	TelePort(PC1, PCExit1_1);
+	//포켓몬센터 나갈 때
+	TelePort(PCExit2_1, PC2);
+	TelePort(PCExit2_2, PC2);
+	//체육관 들어갈 때
+	TelePort(Gym1, GymExit1);
+	//체육관 나올 때
+	TelePort(GymExit2_1, Gym2);
+	TelePort(GymExit2_2, Gym2);
 
-	
-	
 }
 
 void Player::DirCheck(const std::string_view& _AnimationName)

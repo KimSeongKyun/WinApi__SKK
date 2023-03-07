@@ -100,10 +100,12 @@ void Menu::RenderOn()
 {
 	if(Menu1->IsUpdate() == false)
 	{
-		Menu1->SetPosition(Player::MainPlayer->GetPos());
+		Menu1->SetPosition(GameEngineWindow::GetScreenSize().half());
+		Menu1->EffectCameraOff();
 		Menu1->On();
 		float4 ButtonLoca = { -135.0f ,270.0f };
-		Button1->SetPosition(Player::MainPlayer->GetPos() - ButtonLoca);
+		Button1->SetPosition(GameEngineWindow::GetScreenSize().half());
+		Button1->EffectCameraOff();
 		Button1->On();
 		MaxNumber = 4;
 		return;

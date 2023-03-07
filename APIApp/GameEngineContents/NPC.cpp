@@ -26,14 +26,17 @@ NPC::~NPC()
 
 void NPC::Start()
 {
-	for (int i = 0; i < 2; i++)
-	{
-		AnimationRender[i] = CreateRender(PoketMonRenderOrder::NPC);
-		AnimationRender[i]->SetScale({ 80.0f,80.0f });
-	}
-	AnimationRender[0]->CreateAnimation({ .AnimationName = "DROH",  .ImageName = "NPC.bmp", .Start = 0, .End = 0 });
-	AnimationRender[1]->CreateAnimation({ .AnimationName = "Mom",  .ImageName = "NPC.bmp", .Start = 11, .End = 11 });
-	AnimationRender[0]->ChangeAnimation("DROH");
+	
+	NPCRender = CreateRender(PoketMonRenderOrder::NPC);
+	NPCRender->SetScale(_1Tile);
+	NPCRender->CreateAnimation({ .AnimationName = "DROH",  .ImageName = "NPC.bmp", .Start = 0, .End = 0 });
+	NPCRender->CreateAnimation({ .AnimationName = "Mom",  .ImageName = "NPC.bmp", .Start = 11, .End = 11 });
+	NPCRender->CreateAnimation({ .AnimationName = "GymMaster",  .ImageName = "NPC.bmp", .Start = 101, .End = 101 });
+	NPCRender->CreateAnimation({ .AnimationName = "Trainer1",  .ImageName = "NPC.bmp", .Start = 41, .End = 41 });
+	NPCRender->CreateAnimation({ .AnimationName = "Trainer2",  .ImageName = "NPC.bmp", .Start = 61, .End = 61 });
+	NPCRender->CreateAnimation({ .AnimationName = "Trainer3",  .ImageName = "NPC.bmp", .Start = 81, .End = 81 });
+	NPCRender->CreateAnimation({ .AnimationName = "Nurse",  .ImageName = "NPC.bmp", .Start = 90, .End = 90 });
+	NPCRender->CreateAnimation({ .AnimationName = "Customer",  .ImageName = "NPC.bmp", .Start = 78, .End = 78 });
 	
 	float4 Left = { -80.0f, 0.0f };
 	float4 Right = { 80.0f, 0.0f };
@@ -69,33 +72,9 @@ pokemon* NPC::GetPokemon(int _PokemonNum)
 	return Pokemon[_PokemonNum];
 }
 
-void NPC::RenderOn(NPCState _Num)
+void NPC::RenderOn(const std::string_view& _ImageName)
 {
-	
-
-	AnimationRender[static_cast<int>(_Num)]->On();
-	
-	for (int i = 0; i < 2; i++)
-	{
-		if (i != static_cast<int>(_Num))
-		{
-			AnimationRender[i]->Off();
-		}
-	}
-	if (static_cast<int>(_Num) == 0)
-	{
-		DirString = "DROH";
-	}
-
-	if (static_cast<int>(_Num) == 1)
-	{
-		DirString = "Mom";
-	}
-	//if (static_cast<int>(_Num) == 3)
-	//{
-	//	DirString = "Mom";
-	//}
-	AnimationRender[static_cast<int>(_Num)]->ChangeAnimation(DirString);
+	NPCRender->ChangeAnimation(_ImageName);
 }
 
 

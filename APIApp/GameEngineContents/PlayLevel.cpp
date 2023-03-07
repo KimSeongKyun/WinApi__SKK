@@ -83,31 +83,39 @@ void PlayLevel::Loading()
 		float ErrorRange = 40.0f;
 		float4 StartLocation = { 2720.0f + ErrorRange, 1600.0f - ErrorRange };
 		Player* Actor = CreateActor<Player>(PoketMonRenderOrder::Player);
-		Actor->SetMove(StartLocation);
+		Actor->SetPos(StartLocation);
 		Menu* Menu1 = CreateActor<Menu>(PoketMonRenderOrder::Menu);
 		Bag* Bag1 = CreateActor<Bag>(PoketMonRenderOrder::Bag);
 		NPC* Mom = CreateActor<NPC>(PoketMonRenderOrder::NPC);
 		float4 TileRange = { 0.0f, 80.0f };
-		Mom->SetMove({ 3000.0f, 600.0f });
-		Mom->RenderOn(NPCState::MOM);
+		Mom->SetPos({ 3000.0f, 600.0f });
+		Mom->RenderOn("Mom");
 		NPC* DROH = CreateActor<NPC>(PoketMonRenderOrder::NPC);
-		DROH->SetMove({6120.0f, 520.0f});
-		DROH->RenderOn(NPCState::DROH);
-		/*NPC* Mom = CreateActor<NPC>(PoketMonRenderOrder::NPC);
-		float4 TileRange = { 0.0f, 80.0f };
-		Mom->SetMove(Player::MainPlayer->GetPos() - TileRange);
-		Mom->RenderOn(NPCState::MOM);
-		NPC* DROH = CreateActor<NPC>(PoketMonRenderOrder::NPC);
-		DROH->SetMove(Player::MainPlayer->GetPos() - TileRange - TileRange);
-		DROH->RenderOn(NPCState::DROH);
-		NPC* Mom = CreateActor<NPC>(PoketMonRenderOrder::NPC);
-		float4 TileRange = { 0.0f, 80.0f };
-		Mom->SetMove(Player::MainPlayer->GetPos() - TileRange);
-		Mom->RenderOn(NPCState::MOM);
-		NPC* DROH = CreateActor<NPC>(PoketMonRenderOrder::NPC);
-		DROH->SetMove(Player::MainPlayer->GetPos() - TileRange - TileRange);
-		DROH->RenderOn(NPCState::DROH);*/
+		DROH->SetPos({6120.0f, 520.0f});
+		DROH->RenderOn("DROH");
 
+		
+		NPC* GymMaster = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		GymMaster->SetPos({6120.0f,2040.0f});
+		GymMaster->RenderOn("GymMaster");
+		NPC* Trainer1_1 = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		Trainer1_1->SetPos({ 6040.0f, 2280.0f });
+		Trainer1_1->RenderOn("Trainer1");
+		NPC* Trainer1_2 = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		Trainer1_2->SetPos({ 6120.0f, 2280.0f });
+		Trainer1_2->RenderOn("Trainer1");
+		NPC* Trainer2 = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		Trainer2->SetPos({5720.0f, 1640.0f});
+		Trainer2->RenderOn("Trainer2");
+		NPC* Trainer3 = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		Trainer3->SetPos({6120.0f, 1720.0f});
+		Trainer3->RenderOn("Trainer3");
+		NPC* Nurse = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		Nurse->SetPos({ 680.0f, 2200.0f });
+		Nurse->RenderOn("Nurse");
+		NPC* Customer = CreateActor<NPC>(PoketMonRenderOrder::NPC);
+		Customer->SetPos({ 1720.0f, 2280.0f });
+		Customer->RenderOn("Customer");
 		
 	}
 	{

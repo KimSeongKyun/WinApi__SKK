@@ -5,7 +5,13 @@
 enum class NPCState
 {
 	DROH,
-	MOM
+	MOM,
+	GymMaster,
+	Trainer1,
+	Trainer2,
+	Trainer3,
+	Nurse,
+
 };
 class NPC : public GameEngineActor
 {
@@ -23,7 +29,7 @@ public:
 	NPC& operator=(NPC&& _Other) noexcept = delete;
 
 public:
-	void RenderOn(NPCState _Num);
+	void RenderOn(const std::string_view& _ImageName);
 
 
 
@@ -36,14 +42,14 @@ public:
 
 private:
 	float4 _1Tile = { 80.0f, 80.0f };
-	GameEngineRender* AnimationRender[2] = {};
+	GameEngineRender* NPCRender = nullptr;
 	GameEngineCollision* BodyCollisionLeft  = nullptr;
 	GameEngineCollision* BodyCollisionRight = nullptr;
 	GameEngineCollision* BodyCollisionUp    = nullptr;
 	GameEngineCollision* BodyCollisionDown  = nullptr;
 	GameEngineCollision* BodyCollision = nullptr;
 	pokemon* Pokemon[6] = {};
-	std::string DirString = "DROH";
+	
 
 };
 
