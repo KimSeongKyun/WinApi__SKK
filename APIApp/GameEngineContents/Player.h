@@ -36,7 +36,8 @@ protected:
 	void Render(float _Time) override;
 
 public:
-	void ChangeMenuOpen();
+	void MenuOn();
+	void MenuOff();
 	pokemon* GetPokemon(int _PokemonNum);
 
 private:

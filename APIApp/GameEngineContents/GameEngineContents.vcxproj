@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bag.h" />
+    <ClInclude Include="BattleLevel.h" />
     <ClInclude Include="Map.h">
       <SubType>
       </SubType>
@@ -51,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bag.cpp" />
+    <ClCompile Include="BattleLevel.cpp" />
     <ClCompile Include="Map.cpp">
       <SubType>
       </SubType>

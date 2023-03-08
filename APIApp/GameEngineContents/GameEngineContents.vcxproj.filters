@@ -30,6 +30,9 @@
     <ClInclude Include="pokemon.h">
       <Filter>Play</Filter>
     </ClInclude>
+    <ClInclude Include="BattleLevel.h">
+      <Filter>Battle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PoketMonGoldCore.cpp" />
@@ -63,10 +66,16 @@
     <ClCompile Include="pokemon.cpp">
       <Filter>Play</Filter>
     </ClCompile>
+    <ClCompile Include="BattleLevel.cpp">
+      <Filter>Battle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Play">
       <UniqueIdentifier>{dbe06dfd-001e-4f83-800b-981e80d33e75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Battle">
+      <UniqueIdentifier>{85a647b7-70fd-4dd8-a3e4-36f118037216}</UniqueIdentifier>
     </Filter>
     <Filter Include="Title">
       <UniqueIdentifier>{e319163e-7f2f-4f80-b187-882031d15de9}</UniqueIdentifier>

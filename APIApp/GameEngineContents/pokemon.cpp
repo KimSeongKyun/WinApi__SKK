@@ -60,30 +60,31 @@ void pokemon::Start()
 
 void pokemon::Update(float _DeltaTime)
 {
+	if (Level == EvoluLv)
+	{
+		Evolution();
+	}
 }
 
-void pokemon::Setpokemon(int _Att, int _Def, int _Speed, int _MaxExp, int _EvoluLv)
+void pokemon::Setpokemon(int _Att, int _Def, int _Speed, int _MaxHP, int _EvoluLv)
 {
-	Att = _Att * Level;
-	Def = _Def * Level;
-	Speed = _Speed * Level;
-	MaxExp = Level * MaxExp;
+	First_Att = _Att;
+	First_Def = _Def;
+	First_Speed = _Speed;
+	First_HPMax = _MaxHP;
 	EvoluLv = _EvoluLv;
-	
-
 }
 void pokemon::SetLevel(int _Level)
 {
-	int Level = _Level;
+	Level = _Level;
 }
 void pokemon::SetExp(int _Exp)
 {
 	Exp += _Exp;
 	if (Exp >= MaxExp)
 	{
-		++Level;
+		Levelup();
 		Exp = 0;
-		MaxExp += MaxExp;
 	}
 }
 
@@ -92,6 +93,191 @@ void pokemon::SetPokemonImage(const std::string_view& _idleImage , const std::st
 {
 	Pokemon->ChangeAnimation(_idleImage);
 	PokemonBattle->ChangeAnimation(_battleImage);
+}
+
+void pokemon::ChangePokemonType(PokemonType Pokename)
+{
+	type = Pokename;
+
+	switch (Pokename)
+	{
+	case PokemonType::Bulbasaur:
+		SetPokemonImage("Bulbasaur", "Bulbasaur_Battle");
+		Setpokemon(49, 49, 45, 45,  16);	
+		break;
+	case PokemonType::lvysaur:
+		SetPokemonImage("lvysaur", "lvysaur_Battle");
+		Setpokemon(62, 63, 60, 60,  32);
+		
+		break;
+	case PokemonType::Venusaur:
+		SetPokemonImage("Venusaur", "Venusaur_Battle");
+		Setpokemon(82, 83, 80, 80,  100);
+		
+		break;
+	case PokemonType::Charmander:
+		SetPokemonImage("Charmander", "Charmander_Battle");
+		Setpokemon(52, 43, 65, 39,  16);
+		
+		break;
+	case PokemonType::Charmeleon:
+		SetPokemonImage("Charmeleon", "Charmeleon_Battle");
+		Setpokemon(64, 58, 80, 59,  36);
+	
+		break;
+	case PokemonType::Charizard:
+		SetPokemonImage("Charizard", "Charizard_Battle");
+		Setpokemon(84, 78, 100, 78,  100);
+		
+		break;
+	case PokemonType::Squirtle:
+		SetPokemonImage("Squirtle", "Squirtle_Battle");
+		Setpokemon(48, 65, 43, 44,  100);
+		
+		break;
+	case PokemonType::Wartotle:
+		SetPokemonImage("Wartotle", "Wartotle_Battle");
+		Setpokemon(63, 80, 58, 59,  36);
+		
+		break;
+	case PokemonType::Blastoise:
+		SetPokemonImage("Blastoise", "Blastoise_Battle");
+		Setpokemon(83, 100, 78, 79,  100);
+		
+		break;
+	case PokemonType::Caterpie:
+		SetPokemonImage("Caterpie", "Caterpie_Battle");
+		Setpokemon(30, 35, 45, 45,  7);
+		
+		break;
+	case PokemonType::Metapod:
+		SetPokemonImage("Metapod", "Metapod_Battle");
+		Setpokemon(20, 55, 30, 50,  10);
+		
+		break;
+	case PokemonType::Butterfree:
+		SetPokemonImage("Butterfree", "Butterfree_Battle");
+		Setpokemon(45, 50, 70, 60,  100);
+		
+		break;
+	case PokemonType::Bellsprout:
+		SetPokemonImage("Bellsprout", "Bellsprout_Battle");
+		Setpokemon(75, 35, 40, 50,  21);
+		
+		break;
+	case PokemonType::Weepinbell:
+		SetPokemonImage("Weepinbell", "Weepinbell_Battle");
+		Setpokemon(90, 50, 55, 65,  40);
+	
+		break;
+	case PokemonType::Victreebel:
+		SetPokemonImage("Victreebel", "Victreebel_Battle");
+		Setpokemon(105, 65, 70, 80,  100);
+		
+		break;
+	case PokemonType::Pidgey:
+		SetPokemonImage("Pidgey", "Pidgey_Battle");
+		Setpokemon(45, 40, 56, 40,  18);
+		
+		break;
+	case PokemonType::Pidgeotto:
+		SetPokemonImage("Pidgeotto", "Pidgeotto_Battle");
+		Setpokemon(60, 55, 71, 63,  100);
+		
+		break;
+	case PokemonType::Spearow:
+		SetPokemonImage("Spearow", "Spearow_Battle");
+		Setpokemon(60, 30, 70, 40,  20);
+		
+		break;
+	case PokemonType::Fearow:
+		SetPokemonImage("Fearow", "Fearow_Battle");
+		Setpokemon(90, 65, 100, 65,  100);
+		
+		break;
+	default:
+		break;
+	}
+}
+
+void pokemon::Levelup()
+{
+	++Level;
+	Refresh();
+}
+
+void pokemon::Refresh()
+{
+	HPMax = First_HPMax * Level;
+	Att = First_Att * Level;
+	Def = First_Def * Level;
+	Speed = First_Speed * Level;
+	MaxExp = First_MaxExp * Level;
+
+}
+
+void pokemon::Evolution()
+{
+	switch (type)
+	{
+	case PokemonType::Bulbasaur:
+		ChangePokemonType(PokemonType::lvysaur);
+		Refresh();
+		break;
+	case PokemonType::lvysaur:
+		ChangePokemonType(PokemonType::Venusaur);
+		Refresh();
+		break;
+
+	case PokemonType::Charmander:
+		ChangePokemonType(PokemonType::Charmander);
+		Refresh();
+		break;
+	case PokemonType::Charmeleon:
+		ChangePokemonType(PokemonType::Charizard);
+		Refresh();
+		break;
+
+	case PokemonType::Squirtle:
+		ChangePokemonType(PokemonType::Wartotle);
+		Refresh();
+		break;
+	case PokemonType::Wartotle:
+		ChangePokemonType(PokemonType::Blastoise);
+		Refresh();
+		break;
+
+	case PokemonType::Caterpie:
+		ChangePokemonType(PokemonType::Metapod);
+		Refresh();
+		break;
+	case PokemonType::Metapod:
+		ChangePokemonType(PokemonType::Butterfree);
+		Refresh();
+		break;
+
+	case PokemonType::Bellsprout:
+		ChangePokemonType(PokemonType::Weepinbell);
+		Refresh();
+		break;
+	case PokemonType::Weepinbell:
+		ChangePokemonType(PokemonType::Victreebel);
+		Refresh();
+		break;
+
+	case PokemonType::Pidgey:
+		ChangePokemonType(PokemonType::Pidgeotto);
+		Refresh();
+		break;
+
+	case PokemonType::Spearow:
+		ChangePokemonType(PokemonType::Fearow);
+		Refresh();
+		break;
+
+	default:
+		break;
+	}
 }
 
 

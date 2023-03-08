@@ -28,9 +28,13 @@ Player::~Player()
 {
 }
 
-void Player::ChangeMenuOpen()
+void Player::MenuOn()
 {
-	MenuOpen = !MenuOpen;
+	MenuOpen = true;
+}
+void Player::MenuOff()
+{
+	MenuOpen = false;
 }
 
 pokemon* Player::GetPokemon(int _PokemonNum)
@@ -205,32 +209,6 @@ void Player::LevelChangeStart(GameEngineLevel* _PrevLevel)
  
 void Player::Update(float _DeltaTime) 
 {
-	if (true == GameEngineInput::IsDown("Select"))
-	{
-		if (nullptr != BodyCollision)
-		{
-			
-			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCDown), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
-			{
-				Menu::MainMenu->RenderOn();
-			}
-			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCUp), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
-			{
-
-			}
-			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCLeft), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
-			{
-
-			}
-			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCRight), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
-			{
-
-			}
-		}
-	}
-
-	UpdateState(_DeltaTime);
-	Movecalculation(_DeltaTime);
 	// 주인공 방의 출구
 	float4 PlayerRoomExit1 = { 3000.0f, 1320.0f };
 	float4 PlayerRoomExit2 = { 3000.0f, 1400.0f };
@@ -242,32 +220,32 @@ void Player::Update(float _DeltaTime)
 	//주인공 집 입구
 	float4 PlayerHome1_1 = { 2920.0f, 1000.0f };
 	float4 PlayerHome1_2 = { 3000.0f, 1000.0f };
-	float4 PlayerHome2   = { 3000.0f, 920.0f };
+	float4 PlayerHome2 = { 3000.0f, 920.0f };
 
 	//주인공 집 출구
 	float4 PlayerHomeExit1 = { 1480.0f, 760.0f };
 	float4 PlayerHomeExit2 = { 1480.0f, 840.0f };
-	
-	
+
+
 
 	//오박사 건물 입구
 	float4 DrOhHome1 = { 920.0f, 600.0f };
 	float4 DrOhHome2 = { 920.0f, 680.0f };
 
-	
+
 	//오박사 건물 출구
 	float4 DrOhHomeExit1_1 = { 6040.0f, 1320.0f };
 	float4 DrOhHomeExit1_2 = { 6120.0f, 1320.0f };
-	float4 DrOhHomeExit2   = { 6120.0f, 1240.0f };
+	float4 DrOhHomeExit2 = { 6120.0f, 1240.0f };
 
 	//마을 출구 (나갈 때)
 	float4 TownExit1_1 = { 360.0f, 1000.0f };
 	float4 TownExit1_2 = { 360.0f, 1080.0f };
-	
+
 	//들어올 때
 	float4 TownExit2_1 = { 440.0f, 1000.0f };
 	float4 TownExit2_2 = { 440.0f, 1080.0f };
-	
+
 
 	//도시 입구 (나갈 때)
 	float4 CityExit1_1 = { 5240.0f, 920.0f };
@@ -275,7 +253,7 @@ void Player::Update(float _DeltaTime)
 	//들어올 때
 	float4 CityExit2_1 = { 5160.0f, 920.0f };
 	float4 CityExit2_2 = { 5160.0f, 1000.0f };
-	
+
 	//상점 입구 들어갈 때
 	float4 Store1 = { 4040.0f, 760.0f };
 	//상점 입구 나올 때
@@ -285,7 +263,7 @@ void Player::Update(float _DeltaTime)
 	float4 StoreExit1_2 = { 1880.0f, 2760.0f };
 	//상점 출구 들어올 때
 	float4 StoreExit2 = { 1880.0f, 2680.0f };
-	
+
 
 	//포켓몬센터 입구 들어갈 때
 	float4 PC1 = { 4680.0f, 760.0f };
@@ -309,43 +287,72 @@ void Player::Update(float _DeltaTime)
 	float4 GymExit2_1 = { 6040.0f, 2680.0f };
 	float4 GymExit2_2 = { 6120.0f, 2680.0f };
 
+	if (true == GameEngineInput::IsDown("Select"))
+	{
+		//주인공 2층 -> 1층, 2층 -> 1층
+		TelePort(PlayerRoomExit1, PlayerHomeStairs1);
+		TelePort(PlayerHomeStairs2, PlayerRoomExit2);
 
-	//주인공 2층 -> 1층, 2층 -> 1층
-	TelePort(PlayerRoomExit1, PlayerHomeStairs1);
-	TelePort(PlayerHomeStairs2, PlayerRoomExit2);
+		//주인공 집 입구 ->  출구, 출구 -> 입구
+		TelePort(PlayerHome1_1, PlayerHomeExit2);
+		TelePort(PlayerHome1_2, PlayerHomeExit2);
+		TelePort(PlayerHomeExit1, PlayerHome2);
+
+		//오박사 건물 입구 ->  출구, 출구 -> 입구
+		TelePort(DrOhHomeExit1_1, DrOhHome2);
+		TelePort(DrOhHomeExit1_2, DrOhHome2);
+		TelePort(DrOhHome1, DrOhHomeExit2);
+
+		//마을-> 도시
+		TelePort(TownExit1_1, CityExit2_1);
+		TelePort(TownExit1_2, CityExit2_2);
+
+		//도시->마을
+		TelePort(CityExit1_1, TownExit2_1);
+		TelePort(CityExit1_2, TownExit2_2);
+		//상점들어갈때
+		TelePort(Store1, StoreExit2);
+		//상점 나올 때
+		TelePort(StoreExit1_1, Store2);
+		TelePort(StoreExit1_2, Store2);
+		//포켓몬센터 들어갈 때
+		TelePort(PC1, PCExit1_1);
+		//포켓몬센터 나갈 때
+		TelePort(PCExit2_1, PC2);
+		TelePort(PCExit2_2, PC2);
+		//체육관 들어갈 때
+		TelePort(Gym1, GymExit1);
+		//체육관 나올 때
+		TelePort(GymExit2_1, Gym2);
+		TelePort(GymExit2_2, Gym2);
+		if (nullptr != BodyCollision)
+		{
+			
+			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCDown), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
+			{
+				
+			}
+			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCUp), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
+			{
+
+			}
+			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCLeft), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
+			{
+
+			}
+			if (true == BodyCollision->Collision({ .TargetGroup = static_cast<int>(PoketMonCollisionOrder::NPCRight), .TargetColType = CT_Rect, .ThisColType = CT_Rect }, Collision))
+			{
+
+			}
+		}
+	}
+
+	UpdateState(_DeltaTime);
+	Movecalculation(_DeltaTime);
 	
-	//주인공 집 입구 ->  출구, 출구 -> 입구
-	TelePort(PlayerHome1_1, PlayerHomeExit2);
-	TelePort(PlayerHome1_2, PlayerHomeExit2);
-	TelePort(PlayerHomeExit1, PlayerHome2);
 
-	//오박사 건물 입구 ->  출구, 출구 -> 입구
-	TelePort(DrOhHomeExit1_1, DrOhHome2);
-	TelePort(DrOhHomeExit1_2, DrOhHome2);
-	TelePort(DrOhHome1, DrOhHomeExit2);
 
-	//마을-> 도시
-	TelePort(TownExit1_1, CityExit2_1);
-	TelePort(TownExit1_2, CityExit2_2);
-	
-	//도시->마을
-	TelePort(CityExit1_1, TownExit2_1);
-	TelePort(CityExit1_2, TownExit2_2);
-	//상점들어갈때
-	TelePort(Store1, StoreExit2);
-	//상점 나올 때
-	TelePort(StoreExit1_1, Store2);
-	TelePort(StoreExit1_2, Store2);
-	//포켓몬센터 들어갈 때
-	TelePort(PC1, PCExit1_1);
-	//포켓몬센터 나갈 때
-	TelePort(PCExit2_1, PC2);
-	TelePort(PCExit2_2, PC2);
-	//체육관 들어갈 때
-	TelePort(Gym1, GymExit1);
-	//체육관 나올 때
-	TelePort(GymExit2_1, Gym2);
-	TelePort(GymExit2_2, Gym2);
+
 
 }
 

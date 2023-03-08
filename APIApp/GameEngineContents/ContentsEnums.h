@@ -19,7 +19,8 @@ enum class PoketMonCollisionOrder
 	NPCLeft,
 	NPCRight,
 	NPCUp,
-	NPCDown
+	NPCDown,
+	Nurse
 };
 
 

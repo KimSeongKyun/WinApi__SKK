@@ -53,8 +53,6 @@ void PlayLevel::Loading()
 	{
 		GameEngineImage* Player = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Player.BMP"));
 		Player->Cut(10, 3);
-	}
-	{
 		GameEngineImage* Map = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Map.BMP"));
 		GameEngineImage* ColMap = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("ColMap.BMP"));
 		GameEngineImage* Menu = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Menu.BMP"));
@@ -63,7 +61,8 @@ void PlayLevel::Loading()
 		GameEngineImage* NPC = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("NPC.BMP"));
 		NPC->Cut(10, 11);
 		GameEngineImage* Item = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Medicine.BMP"));
-		
+		GameEngineImage* Message = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("Message.BMP"));
+		GameEngineImage* YesNo = GameEngineResources::GetInst().ImageLoad(Dir.GetPlusFileName("YesNo.BMP"));
 		
 	}
 	{
@@ -166,7 +165,7 @@ void PlayLevel::Update(float _DeltaTime)
 	if (GameEngineInput::IsDown("MenuOpen"))
 	{
 		Menu::MainMenu->RenderOn();
-		Player::MainPlayer->ChangeMenuOpen();
+		Player::MainPlayer->MenuOff();
 	}
 }
 
