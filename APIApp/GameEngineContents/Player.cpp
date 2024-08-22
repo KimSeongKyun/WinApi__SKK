@@ -349,11 +349,6 @@ void Player::Update(float _DeltaTime)
 
 	UpdateState(_DeltaTime);
 	Movecalculation(_DeltaTime);
-	
-
-
-
-
 }
 
 void Player::DirCheck(const std::string_view& _AnimationName)
