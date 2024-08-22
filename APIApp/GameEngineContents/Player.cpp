@@ -64,14 +64,14 @@ void Player::Start()
 		AnimationRender = CreateRender(PoketMonRenderOrder::Player);
 		AnimationRender->SetScale({ 80, 80 });
 
-		AnimationRender->CreateAnimation({ .AnimationName = "Right_Idle",  .ImageName = "Player.bmp", .Start = 9, .End = 9, .InterTime = 0.01f });
-		AnimationRender->CreateAnimation({ .AnimationName = "Right_Move",  .ImageName = "Player.bmp", .Start = 8, .End = 9 , .InterTime = 0.1f });
-		AnimationRender->CreateAnimation({ .AnimationName = "Left_Idle",  .ImageName = "Player.bmp", .Start = 7, .End = 7, .InterTime = 0.01f });
-		AnimationRender->CreateAnimation({ .AnimationName = "Left_Move",  .ImageName = "Player.bmp", .Start = 6, .End = 7 , .InterTime = 0.1f });
-		AnimationRender->CreateAnimation({ .AnimationName = "Up_Idle",  .ImageName = "Player.bmp", .Start = 3, .End = 3, .InterTime = 0.01f });
-		AnimationRender->CreateAnimation({ .AnimationName = "Up_Move",  .ImageName = "Player.bmp", .Start = 4, .End = 5 , .InterTime = 0.17f });
-		AnimationRender->CreateAnimation({ .AnimationName = "Down_Idle",  .ImageName = "Player.bmp", .Start = 0, .End = 0, .InterTime = 0.01f });
-		AnimationRender->CreateAnimation({ .AnimationName = "Down_Move",  .ImageName = "Player.bmp", .Start = 1, .End = 2 , .InterTime = 0.17f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Right_Idle",  .ImageName = "Player.bmp", .Start = 9, .End = 9, .InterTime = 0.02f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Right_Move",  .ImageName = "Player.bmp", .Start = 8, .End = 9 , .InterTime = 0.2f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Left_Idle",  .ImageName = "Player.bmp", .Start = 7, .End = 7, .InterTime = 0.02f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Left_Move",  .ImageName = "Player.bmp", .Start = 6, .End = 7 , .InterTime = 0.2f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Up_Idle",  .ImageName = "Player.bmp", .Start = 3, .End = 3, .InterTime = 0.2f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Up_Move",  .ImageName = "Player.bmp", .Start = 4, .End = 5 , .InterTime = 0.2f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Down_Idle",  .ImageName = "Player.bmp", .Start = 0, .End = 0, .InterTime = 0.02f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Down_Move",  .ImageName = "Player.bmp", .Start = 1, .End = 2 , .InterTime = 0.f });
 	}
 	
 
@@ -168,7 +168,7 @@ void Player::Movecalculation(float _DeltaTime)
 	if (true == MoveStart1)
 	{
 		// 시작에서 끝까지 이동하는데 1초가 걸리는 함수
-		Time += _DeltaTime * 4.0f;
+		Time += _DeltaTime * 10.0f;
 		float4 Pos = float4::LerpClamp(Start1, End1, Time);
 		SetPos(Pos);
 
