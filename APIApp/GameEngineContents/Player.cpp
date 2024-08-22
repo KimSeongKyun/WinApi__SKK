@@ -71,7 +71,7 @@ void Player::Start()
 		AnimationRender->CreateAnimation({ .AnimationName = "Up_Idle",  .ImageName = "Player.bmp", .Start = 3, .End = 3, .InterTime = 0.2f });
 		AnimationRender->CreateAnimation({ .AnimationName = "Up_Move",  .ImageName = "Player.bmp", .Start = 4, .End = 5 , .InterTime = 0.2f });
 		AnimationRender->CreateAnimation({ .AnimationName = "Down_Idle",  .ImageName = "Player.bmp", .Start = 0, .End = 0, .InterTime = 0.02f });
-		AnimationRender->CreateAnimation({ .AnimationName = "Down_Move",  .ImageName = "Player.bmp", .Start = 1, .End = 2 , .InterTime = 0.f });
+		AnimationRender->CreateAnimation({ .AnimationName = "Down_Move",  .ImageName = "Player.bmp", .Start = 1, .End = 2 , .InterTime = 0.02f });
 	}
 	
 
